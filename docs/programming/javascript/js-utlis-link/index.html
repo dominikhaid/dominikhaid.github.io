@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>JavaScript-Utils | Dominik Haid - Notebook</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="JavaScript-Utils" />
+<meta name="author" content="Dominik Haid" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:site_name" content="Dominik Haid - Notebook" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="JavaScript-Utils" />
+<script type="application/ld+json">
+{"url":"/docs/programming/javascript/js-utlis-link/","@type":"WebPage","headline":"JavaScript-Utils","author":{"@type":"Person","name":"Dominik Haid"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/assets/css/style.css?v=f265e76c8374f285c1300881a4195e276d4fa80c">
+  </head>
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      
+      <h1><a href="/">Dominik Haid - Notebook</a></h1>
+      
+
+      <script type="text/javascript">
+  // NOTE: this should be in sync with the settings/usage in the vscode extension
+  // atm it's just a wide superset of md extensions to cover a wide range of cases
+  var MD_EXT = [
+    ".md",
+    ".markdown",
+    ".mdx",
+    ".mdown",
+    ".mkdn",
+    ".mkd",
+    ".mdwn",
+    ".mdtxt",
+    ".mdtext",
+    ".text",
+    ".Rmd",
+  ];
+  function normalizeMdLink(link) {
+    var url = new URL(link);
+    var mdFileExt = MD_EXT.find((ext) => url.pathname.endsWith(ext));
+    if (mdFileExt) {
+      url.pathname = url.pathname.slice(0, mdFileExt.length * -1);
+    }
+    return Array.from(new Set(url.toString().split("/"))).join("/");
+  }
+
+  window.addEventListener("DOMContentLoaded", (event) => {
+    document
+      .querySelectorAll(".markdown-body a[title]:not([href^=http])")
+      .forEach((a) => {
+        // filter to only wiki-links
+        var prev = a.previousSibling;
+        var next = a.nextSibling;
+        if (
+          prev instanceof Text &&
+          prev.textContent.endsWith("[") &&
+          next instanceof Text &&
+          next.textContent.startsWith("]")
+        ) {
+          // remove surrounding brackets
+          prev.textContent = prev.textContent.slice(0, -1);
+          next.textContent = next.textContent.slice(1);
+
+          // add CSS list for styling
+          a.classList.add("wikilink");
+
+          // replace page-link with "Page Title"...
+          a.innerText = a.title;
+
+          // ...and normalize the links to allow html pages navigation
+          a.href = normalizeMdLink(a.href);
+        }
+      });
+
+    document.querySelectorAll(".github-only").forEach((el) => {
+      el.remove();
+    });
+  });
+</script>
+
+<p>JavaScript-Utils</p>
+
+<ul>
+  <li><a href="https://cdnjs.com/libraries/d3">d3</a></li>
+  <li><a href="https://cdnjs.com/libraries/jquery">jQuery</a></li>
+  <li><a href="https://cdnjs.com/libraries/three.js">three</a></li>
+  <li><a href="https://cdnjs.com/libraries/moment.js">moment</a></li>
+  <li><a href="https://cdnjs.com/libraries/socket.io">socket.io</a></li>
+  <li><a href="https://cdnjs.com/libraries/vue">vue</a></li>
+  <li><a href="https://cdnjs.com/libraries/normalize">normalize</a></li>
+  <li><a href="https://cdnjs.com/libraries/animejs">anmiejs</a></li>
+  <li><a href="https://cdnjs.com/libraries/impress.js">impress</a></li>
+  <li><a href="https://cdnjs.com/libraries/pdf.js">PDF.js</a></li>
+  <li><a href="https://cdnjs.com/libraries/video.js">video.js</a></li>
+  <li><a href="https://cdnjs.com/libraries/clipboard.js">clipboard.js</a></li>
+  <li><a href="https://cdnjs.com/libraries/phaser">phaser</a></li>
+  <li><a href="https://cdnjs.com/libraries/leaflet">leaflet</a></li>
+  <li><a href="https://cdnjs.com/libraries/uuid">uuid</a></li>
+  <li><a href="https://cdnjs.com/libraries/toastr.js">Toaster</a></li>
+  <li><a href="https://cdnjs.com/libraries/remark">remark</a></li>
+  <li><a href="https://cdnjs.com/libraries/graphiql">graphqli</a></li>
+  <li><a href="https://cdnjs.com/libraries/Faker">faker</a></li>
+  <li><a href="https://cdnjs.com/libraries/marked">marked</a></li>
+  <li><a href="https://cdnjs.com/libraries/date-fns">date-fn</a></li>
+  <li><a href="https://cdnjs.com/libraries/hover.css">hover.css</a></li>
+  <li><a href="https://cdnjs.com/libraries/jspdf">jspdf</a></li>
+  <li><a href="https://cdnjs.com/libraries/hammer.js">hammer.js</a></li>
+  <li><a href="https://cdnjs.com/libraries/popmotion">pop-motion</a></li>
+  <li><a href="https://cdnjs.com/libraries/less.js">less</a></li>
+  <li><a href="https://cdnjs.com/libraries/handlebars.js">handelbar</a></li>
+  <li><a href="https://cdnjs.com/libraries/xlsx">xls</a></li>
+  <li><a href="https://cdnjs.com/libraries/dropzone">Dropzone</a></li>
+  <li><a href="https://cdnjs.com/libraries/core-js">core-js</a></li>
+  <li><a href="https://cdnjs.com/libraries/FileSaver.js">file-saver</a></li>
+  <li><a href="https://cdnjs.com/libraries/vConsole">console</a></li>
+  <li><a href="https://cdnjs.com/libraries/dragula">dragular</a></li>
+  <li><a href="https://cdnjs.com/libraries/scrollReveal.js">scroll-reveal</a></li>
+  <li><a href="https://developers.google.com/speed/libraries#prototype">prototype</a></li>
+  <li><a href="https://developers.google.com/speed/libraries#cesiumjs">cesium</a></li>
+</ul>
+
+<p>[[Favorites]]
+[[JavaScript]]</p>
+
+
+
+
+<script type="text/javascript">
+  window.addEventListener("DOMContentLoaded", function () {
+    if (typeof anchors !== "undefined") {
+      anchors.options.visible = "always";
+      anchors.add("a[href^=http]:not(.wikilink)");
+    }
+  });
+</script>
+
+
+      
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+    <script>anchors.add();</script>
+    
+  </body>
+</html>

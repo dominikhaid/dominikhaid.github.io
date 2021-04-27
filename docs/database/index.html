@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Database | Dominik Haid - Notebook</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Database" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:site_name" content="Dominik Haid - Notebook" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Database" />
+<script type="application/ld+json">
+{"url":"/docs/database/","@type":"WebPage","headline":"Database","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/assets/css/style.css?v=f265e76c8374f285c1300881a4195e276d4fa80c">
+  </head>
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      
+      <h1><a href="/">Dominik Haid - Notebook</a></h1>
+      
+
+      <script type="text/javascript">
+  // NOTE: this should be in sync with the settings/usage in the vscode extension
+  // atm it's just a wide superset of md extensions to cover a wide range of cases
+  var MD_EXT = [
+    ".md",
+    ".markdown",
+    ".mdx",
+    ".mdown",
+    ".mkdn",
+    ".mkd",
+    ".mdwn",
+    ".mdtxt",
+    ".mdtext",
+    ".text",
+    ".Rmd",
+  ];
+  function normalizeMdLink(link) {
+    var url = new URL(link);
+    var mdFileExt = MD_EXT.find((ext) => url.pathname.endsWith(ext));
+    if (mdFileExt) {
+      url.pathname = url.pathname.slice(0, mdFileExt.length * -1);
+    }
+    return Array.from(new Set(url.toString().split("/"))).join("/");
+  }
+
+  window.addEventListener("DOMContentLoaded", (event) => {
+    document
+      .querySelectorAll(".markdown-body a[title]:not([href^=http])")
+      .forEach((a) => {
+        // filter to only wiki-links
+        var prev = a.previousSibling;
+        var next = a.nextSibling;
+        if (
+          prev instanceof Text &&
+          prev.textContent.endsWith("[") &&
+          next instanceof Text &&
+          next.textContent.startsWith("]")
+        ) {
+          // remove surrounding brackets
+          prev.textContent = prev.textContent.slice(0, -1);
+          next.textContent = next.textContent.slice(1);
+
+          // add CSS list for styling
+          a.classList.add("wikilink");
+
+          // replace page-link with "Page Title"...
+          a.innerText = a.title;
+
+          // ...and normalize the links to allow html pages navigation
+          a.href = normalizeMdLink(a.href);
+        }
+      });
+
+    document.querySelectorAll(".github-only").forEach((el) => {
+      el.remove();
+    });
+  });
+</script>
+
+<h1 id="database">Database</h1>
+
+<p>All kind of database stuff.</p>
+
+<ul>
+  <li>[<a href="database/firestore" title="Firestore">firestore</a>]</li>
+  <li>[<a href="database/json" title="Json Db">json</a>]</li>
+  <li>[<a href="database/local-db" title="LocalDb">local-db</a>]</li>
+  <li>[<a href="database/local-storage" title="LocalStorage">local-storage</a>]</li>
+  <li>[<a href="database/maria-db" title="MariaDb">maria-db</a>]</li>
+  <li>[<a href="database/mongo-db" title="MongoDB">mongo-db</a>]</li>
+  <li>[<a href="database/postgres" title="Postgres SQL">postgres</a>]</li>
+  <li>[<a href="database/sqlite" title="SQL-Lite">sqlite</a>]</li>
+</ul>
+
+
+
+
+<script type="text/javascript">
+  window.addEventListener("DOMContentLoaded", function () {
+    if (typeof anchors !== "undefined") {
+      anchors.options.visible = "always";
+      anchors.add("a[href^=http]:not(.wikilink)");
+    }
+  });
+</script>
+
+
+      
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+    <script>anchors.add();</script>
+    
+  </body>
+</html>

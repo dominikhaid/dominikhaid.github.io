@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>git-cli | Dominik Haid - Notebook</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="git-cli" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:site_name" content="Dominik Haid - Notebook" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="git-cli" />
+<script type="application/ld+json">
+{"url":"/docs/git/git-cli/","@type":"WebPage","headline":"git-cli","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/assets/css/style.css?v=f265e76c8374f285c1300881a4195e276d4fa80c">
+  </head>
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      
+      <h1><a href="/">Dominik Haid - Notebook</a></h1>
+      
+
+      <script type="text/javascript">
+  // NOTE: this should be in sync with the settings/usage in the vscode extension
+  // atm it's just a wide superset of md extensions to cover a wide range of cases
+  var MD_EXT = [
+    ".md",
+    ".markdown",
+    ".mdx",
+    ".mdown",
+    ".mkdn",
+    ".mkd",
+    ".mdwn",
+    ".mdtxt",
+    ".mdtext",
+    ".text",
+    ".Rmd",
+  ];
+  function normalizeMdLink(link) {
+    var url = new URL(link);
+    var mdFileExt = MD_EXT.find((ext) => url.pathname.endsWith(ext));
+    if (mdFileExt) {
+      url.pathname = url.pathname.slice(0, mdFileExt.length * -1);
+    }
+    return Array.from(new Set(url.toString().split("/"))).join("/");
+  }
+
+  window.addEventListener("DOMContentLoaded", (event) => {
+    document
+      .querySelectorAll(".markdown-body a[title]:not([href^=http])")
+      .forEach((a) => {
+        // filter to only wiki-links
+        var prev = a.previousSibling;
+        var next = a.nextSibling;
+        if (
+          prev instanceof Text &&
+          prev.textContent.endsWith("[") &&
+          next instanceof Text &&
+          next.textContent.startsWith("]")
+        ) {
+          // remove surrounding brackets
+          prev.textContent = prev.textContent.slice(0, -1);
+          next.textContent = next.textContent.slice(1);
+
+          // add CSS list for styling
+          a.classList.add("wikilink");
+
+          // replace page-link with "Page Title"...
+          a.innerText = a.title;
+
+          // ...and normalize the links to allow html pages navigation
+          a.href = normalizeMdLink(a.href);
+        }
+      });
+
+    document.querySelectorAll(".github-only").forEach((el) => {
+      el.remove();
+    });
+  });
+</script>
+
+<h1 id="git-cli">git-cli</h1>
+
+<h1 id="useful-git-commands">Useful Git Commands</h1>
+
+<p>You can also read the <a href="translation/README.pt-br.md">Portuguese</a> version.</p>
+
+<h2 id="about-it">About it</h2>
+<blockquote>
+  <p>Have you recently started using Git? This should give you the base commands you need to perform the most common actions in Git. If you find a command that is not here, or could be explained better, please don’t hesitate in * <a href="#contributing">Contributing</a>. Cheers!</p>
+</blockquote>
+
+<h2 id="table-of-contents">Table of contents</h2>
+
+<ul>
+  <li><a href="#git-cli">git-cli</a></li>
+  <li><a href="#useful-git-commands">Useful Git Commands</a>
+    <ul>
+      <li><a href="#about-it">About it</a></li>
+      <li><a href="#table-of-contents">Table of contents</a>
+        <ul>
+          <li><a href="#git">Git</a></li>
+          <li><a href="#install-git">Install Git</a>
+            <ul>
+              <li><a href="#setting-up-git">Setting up git</a></li>
+              <li><a href="#applying-colour-to-git">Applying colour to git</a></li>
+              <li><a href="#initializing-a-repository-in-an-existing-directory">Initializing a repository in an existing directory</a></li>
+            </ul>
+          </li>
+          <li><a href="#checking-the-status-of-your-files">Checking the status of your files</a></li>
+          <li><a href="#staging-files">Staging files</a></li>
+          <li><a href="#stashing-files">Stashing files</a></li>
+          <li><a href="#committing-files">Committing files</a></li>
+          <li><a href="#branching-and-merging">Branching and merging</a></li>
+          <li><a href="#fetching-and-checking-out-remote-branches">Fetching and checking out remote branches</a></li>
+          <li><a href="#merging-branch-to-trunkmaster">Merging branch to trunk/master</a></li>
+          <li><a href="#updating-a-local-repository-with-changes-from-a-github-repository">Updating a local repository with changes from a Github repository</a></li>
+          <li><a href="#tracking-existing-branch">Tracking existing branch</a></li>
+          <li><a href="#resetting">Resetting</a></li>
+          <li><a href="#git-remote">Git remote</a></li>
+          <li><a href="#git-grep">Git grep</a></li>
+          <li><a href="#git-blame">Git blame</a></li>
+          <li><a href="#git-log">Git log</a></li>
+          <li><a href="#checking-what-you-are-committing">Checking what you are committing</a></li>
+          <li><a href="#useful-commands">Useful commands</a></li>
+          <li><a href="#useful-alias">Useful alias</a></li>
+          <li><a href="#contributing">Contributing</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="git">Git</h4>
+
+<p>Git is a distributed version control system, very easy to learn and supper fast!</p>
+
+<h4 id="install-git">Install Git</h4>
+
+<p>There are a few different ways to install git (from source or for Linux) but the purpose of this page is to focus on git commands, so I am going to assume you are installing git on a Mac.</p>
+
+<p>To view other ways of installing it visit the <a href="http://git-scm.com/book/en/Getting-Started-Installing-Git">Git official site</a></p>
+
+<p>Click <a href="http://git-scm.com/download/mac">here</a> to download and install Git</p>
+
+<h5 id="setting-up-git">Setting up git</h5>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git config <span class="nt">--global</span> user.name <span class="s2">"User Name"</span>
+
+<span class="nv">$ </span>git config <span class="nt">--global</span> user.email <span class="s2">"email"</span>
+</code></pre></div></div>
+
+<h5 id="applying-colour-to-git">Applying colour to git</h5>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git config <span class="nt">--global</span> color.ui <span class="nb">true</span>
+</code></pre></div></div>
+
+<h5 id="initializing-a-repository-in-an-existing-directory">Initializing a repository in an existing directory</h5>
+
+<p>If you’re starting to track an existing project in Git, you need to go to the project’s directory and type:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git init
+</code></pre></div></div>
+<p>This creates a new subdirectory named .git that contains all of your necessary repository files — a Git repository skeleton. At this point, nothing in your project is tracked yet.</p>
+
+<p>To start version-controlling existing files you should start by tracking those files and do an initial commit. To accomplish that you should start with a few  <code class="language-plaintext highlighter-rouge">$ git add</code> that specifies the files you want to track followed by a commit.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git add &lt;file&gt;
+<span class="nv">$ </span>git add README
+<span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s1">'Initial project version'</span>
+</code></pre></div></div>
+<h4 id="checking-the-status-of-your-files">Checking the status of your files</h4>
+
+<p>The main tool you use to determine which files are in which state is the <code class="language-plaintext highlighter-rouge">$ git status</code> command. If you run this command directly after a clone, you should see something like this:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git status
+<span class="c"># On branch master</span>
+nothing to commit <span class="o">(</span>working directory clean<span class="o">)</span>
+</code></pre></div></div>
+
+<p>If you add a new file to your project, and the file didn’t exist before, when you run a <code class="language-plaintext highlighter-rouge">$ git status</code> you should see your untracked file like this:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git status
+<span class="c"># On branch master</span>
+<span class="c"># Untracked files:</span>
+<span class="c">#   (use "git add &lt;file&gt;..." to include in what will be committed)</span>
+<span class="c">#</span>
+<span class="c">#   README</span>
+nothing added to commit but untracked files present <span class="o">(</span>use <span class="s2">"git add"</span> to track<span class="o">)</span>
+</code></pre></div></div>
+
+<h4 id="staging-files">Staging files</h4>
+
+<p>After initializing a git repository in the chosen directory, all files will now be tracked. Any changes made to any file will be shown after a <code class="language-plaintext highlighter-rouge">$ git status</code> as changes not staged for commit.</p>
+
+<p>To stage changes for commit you need to add the file(s) - or in other words, stage file(s).</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Adding a file</span>
+<span class="nv">$ </span>git add filename
+
+<span class="c"># Adding all files</span>
+<span class="nv">$ </span>git add <span class="nt">-A</span>
+
+<span class="c"># Adding all files changes in a directory</span>
+<span class="nv">$ </span>git add <span class="nb">.</span>
+
+<span class="c"># Choosing what changes to add (this will got through all your changes and you can 'Y' or 'N' the changes)</span>
+<span class="nv">$ </span>git add <span class="nt">-p</span>
+</code></pre></div></div>
+
+<h4 id="stashing-files">Stashing files</h4>
+
+<p>Git stash is a very useful command, where git will ‘hide’ the changes on a dirty directory - but no worries you can re-apply them later. The command will save your local changes away and revert the working directory to match the HEAD commit.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Stash local changes</span>
+<span class="nv">$ </span>git stash
+
+<span class="c"># Stash local changes with a custom message</span>
+<span class="nv">$ </span>git stash save <span class="s2">"this is your custom message"</span>
+
+<span class="c"># Re-apply the changes you saved in your latest stash</span>
+<span class="nv">$ </span>git stash apply
+
+<span class="c"># Re-apply the changes you saved in a given stash number</span>
+<span class="nv">$ </span>git stash apply stash@<span class="o">{</span>stash_number<span class="o">}</span>
+
+<span class="c"># Drops any stash by its number</span>
+<span class="nv">$ </span>git stash drop stash@<span class="o">{</span>0<span class="o">}</span>
+
+<span class="c"># Apply the stash and then immediately drop it from your stack</span>
+<span class="nv">$ </span>git stash pop
+
+<span class="c"># 'Release' a particular stash from your list of stashes</span>
+<span class="nv">$ </span>git stash pop stash@<span class="o">{</span>stash_number<span class="o">}</span>
+
+<span class="c"># List all stashes</span>
+<span class="nv">$ </span>git stash list
+
+<span class="c"># Show the latest stash changes</span>
+<span class="nv">$ </span>git stash show
+
+<span class="c"># See diff details of a given stash number</span>
+<span class="nv">$ </span>git diff stash@<span class="o">{</span>0<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="committing-files">Committing files</h4>
+
+<p>After adding/staging a file, the next step is to commit staged file(s)</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Commit staged file(s)</span>
+<span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s1">'commit message'</span>
+
+<span class="c"># Add file and commit</span>
+<span class="nv">$ </span>git commit filename <span class="nt">-m</span> <span class="s1">'commit message'</span>
+
+<span class="c"># Add file and commit staged file</span>
+<span class="nv">$ </span>git commit <span class="nt">-am</span> <span class="s1">'insert commit message'</span>
+
+<span class="c"># Amending a commit</span>
+<span class="nv">$ </span>git commit <span class="nt">--amend</span> <span class="s1">'new commit message'</span> or no message to maintain previous message
+
+<span class="c"># Squashing commits together</span>
+<span class="nv">$ </span>git rebase <span class="nt">-i</span>
+This will give you an interface on your core editor:
+<span class="c"># Commands:</span>
+<span class="c">#  p, pick = use commit</span>
+<span class="c">#  r, reword = use commit, but edit the commit message</span>
+<span class="c">#  e, edit = use commit, but stop for amending</span>
+<span class="c">#  s, squash = use commit, but meld into previous commit</span>
+<span class="c">#  f, fixup = like "squash", but discard this commit's log message</span>
+<span class="c">#  x, exec = run command (the rest of the line) using shell</span>
+
+<span class="c"># Squashing commits together using reset --soft</span>
+<span class="nv">$ </span>git reset <span class="nt">--soft</span> HEAD~number_of_commits
+<span class="nv">$ </span>git commit
+<span class="k">**</span> WARNING: this will require force pushing commits, which is OK <span class="k">if </span>this is on a branch before you push to master or create a Pull Request.
+</code></pre></div></div>
+
+<h4 id="branching-and-merging">Branching and merging</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Creating a local branch</span>
+<span class="nv">$ </span>git checkout <span class="nt">-b</span> branchname
+
+<span class="c"># Switching between 2 branches (in fact, this would work on terminal as well to switch between 2 directories - $ cd -)</span>
+<span class="nv">$ </span>git checkout -
+
+<span class="c"># Pushing local branch to remote</span>
+<span class="nv">$ </span>git push <span class="nt">-u</span> origin branchname
+
+<span class="c"># Deleting a local branch - this won't let you delete a branch that hasn't been merged yet</span>
+<span class="nv">$ </span>git branch <span class="nt">-d</span> branchname
+
+<span class="c"># Deleting a local branch - this WILL delete a branch even if it hasn't been merged yet!</span>
+<span class="nv">$ </span>git branch <span class="nt">-D</span> branchname
+
+<span class="c"># Remove any remote refs you have locally that have been removed from your remote (you can substitute &lt;origin&gt; to any remote branch)</span>
+<span class="nv">$ </span>git remote prune origin
+
+<span class="c"># Viewing all branches, including local and remote branches</span>
+<span class="nv">$ </span>git branch <span class="nt">-a</span>
+
+<span class="c"># Viewing all branches that have been merged into your current branch, including local and remote</span>
+<span class="nv">$ </span>git branch <span class="nt">-a</span> <span class="nt">--merged</span>
+
+<span class="c"># Viewing all branches that haven't been merged into your current branch, including local and remote</span>
+<span class="nv">$ </span>git branch <span class="nt">-a</span> <span class="nt">--no-merged</span>
+
+<span class="c"># Viewing local branches</span>
+<span class="nv">$ </span>git branch
+
+<span class="c"># Viewing remote branches</span>
+<span class="nv">$ </span>git branch <span class="nt">-r</span>
+
+<span class="c"># Rebase master branch into local branch</span>
+<span class="nv">$ </span>git rebase origin/master
+
+<span class="c"># Pushing local branch after rebasing master into local branch</span>
+<span class="nv">$ </span>git push origin +branchname
+</code></pre></div></div>
+
+<h4 id="fetching-and-checking-out-remote-branches">Fetching and checking out remote branches</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># This will fetch all the remote branches for you.</span>
+<span class="nv">$ </span>git fetch origin
+
+<span class="c"># With the remote branches in hand, you now need to check out the branch you are interested in, giving you a local working copy:</span>
+<span class="nv">$ </span>git checkout <span class="nt">-b</span> <span class="nb">test </span>origin/test
+
+<span class="c"># Deleting a remote branch</span>
+<span class="nv">$ </span>git branch <span class="nt">-rd</span> origin/branchname
+<span class="nv">$ </span>git push origin <span class="nt">--delete</span> branchname  or  <span class="nv">$ </span>git push origin:branchname
+</code></pre></div></div>
+
+<h4 id="merging-branch-to-trunkmaster">Merging branch to trunk/master</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># First checkout trunk/master</span>
+<span class="nv">$ </span>git checkout trunk/master
+
+<span class="c"># Now merge branch to trunk/master</span>
+<span class="nv">$ </span>git merge branchname
+
+<span class="c"># To cancel a merge</span>
+<span class="nv">$ </span>git merge <span class="nt">--abort</span>
+</code></pre></div></div>
+
+<h4 id="updating-a-local-repository-with-changes-from-a-github-repository">Updating a local repository with changes from a Github repository</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git pull origin master
+</code></pre></div></div>
+
+<h4 id="tracking-existing-branch">Tracking existing branch</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git branch <span class="nt">--set-upstream-to</span><span class="o">=</span>origin/foo foo
+</code></pre></div></div>
+
+<h4 id="resetting">Resetting</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Mixes your head with a give sha</span>
+<span class="c"># This lets you do things like split a commit</span>
+<span class="nv">$ </span>git reset <span class="nt">--mixed</span> <span class="o">[</span>sha]
+
+<span class="c"># Upstream master</span>
+<span class="nv">$ </span>git reset HEAD origin/master <span class="nt">--</span> filename
+
+<span class="c"># The version from the most recent commit</span>
+<span class="nv">$ </span>git reset HEAD <span class="nt">--</span> filename
+
+<span class="c"># The version before the most recent commit</span>
+<span class="nv">$ </span>git reset HEAD^ <span class="nt">--</span> filename
+
+<span class="c"># Move head to specific commit</span>
+<span class="nv">$ </span>git reset <span class="nt">--hard</span> sha
+
+<span class="c"># Reset the staging area and the working directory to match the most recent commit. In addition to unstaging changes, the --hard flag tells Git to overwrite all changes in the working directory, too.</span>
+<span class="nv">$ </span>git reset <span class="nt">--hard</span>
+</code></pre></div></div>
+
+<h4 id="git-remote">Git remote</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Show where 'origin' is pointing to and also tracked branches</span>
+<span class="nv">$ </span>git remote show origin
+
+<span class="c"># Show where 'origin' is pointing to</span>
+<span class="nv">$ </span>git remote <span class="nt">-v</span>
+
+<span class="c"># Change the 'origin' remote's URL</span>
+<span class="nv">$ </span>git remote set-url origin https://github.com/user/repo.git
+
+<span class="c"># Add a new 'origin'</span>
+<span class="c"># Usually use to 'rebase' from forks</span>
+<span class="nv">$ </span>git remote add <span class="o">[</span>NAME] https://github.com/user/fork-repo.git
+</code></pre></div></div>
+
+<h4 id="git-grep">Git grep</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 'Searches' for parts of strings in a directory</span>
+<span class="nv">$ </span>git <span class="nb">grep</span> <span class="s1">'something'</span>
+
+<span class="c"># 'Searches' for parts of strings in a directory and the -n prints out the line numbers where git has found matches</span>
+<span class="nv">$ </span>git <span class="nb">grep</span> <span class="nt">-n</span> <span class="s1">'something'</span>
+
+<span class="c"># 'Searches' for parts of string in a context (some lines before and some after the grepped term)</span>
+<span class="nv">$ </span>git <span class="nb">grep</span> <span class="nt">-C</span>&lt;number of lines&gt; <span class="s1">'something'</span>
+
+<span class="c"># 'Searches' for parts of string and also shows lines BEFORE the grepped term</span>
+<span class="nv">$ </span>git <span class="nb">grep</span> <span class="nt">-B</span>&lt;number of lines&gt; <span class="s1">'something'</span>
+
+<span class="c"># 'Searches' for parts of string and also shows lines AFTER the grepped term</span>
+<span class="nv">$ </span>git <span class="nb">grep</span> <span class="nt">-A</span>&lt;number of lines&gt; <span class="s1">'something'</span>
+</code></pre></div></div>
+
+<h4 id="git-blame">Git blame</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Show alteration history of a file with the name of the author</span>
+<span class="nv">$ </span>git blame <span class="o">[</span>filename]
+
+<span class="c"># Show alteration history of a file with the name of the author &amp;&amp; SHA</span>
+<span class="nv">$ </span>git blame <span class="o">[</span>filename] <span class="nt">-l</span>
+</code></pre></div></div>
+
+<h4 id="git-log">Git log</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Show a list of all commits in a repository. This command shows everything about a commit, such as commit ID, author, date and commit message.</span>
+<span class="nv">$ </span>git log
+
+<span class="c"># List of commits showing commit messages and changes</span>
+<span class="nv">$ </span>git log <span class="nt">-p</span>
+
+<span class="c"># List of commits with the particular expression you are looking for</span>
+<span class="nv">$ </span>git log <span class="nt">-S</span> <span class="s1">'something'</span>
+
+<span class="c"># List of commits by author</span>
+<span class="nv">$ </span>git log <span class="nt">--author</span> <span class="s1">'Author Name'</span>
+
+<span class="c"># Show a list of commits in a repository in a more summarised way. This shows a shorter version of the commit ID and the commit message.</span>
+<span class="nv">$ </span>git log <span class="nt">--oneline</span>
+
+<span class="c"># Show a list of commits in a repository since yesterday</span>
+<span class="nv">$ </span>git log <span class="nt">--since</span><span class="o">=</span>yesterday
+
+<span class="c"># Shows log by author and searching for specific term inside the commit message</span>
+<span class="nv">$ </span>git log <span class="nt">--grep</span> <span class="s2">"term"</span> <span class="nt">--author</span> <span class="s2">"name"</span>
+</code></pre></div></div>
+
+<h4 id="checking-what-you-are-committing">Checking what you are committing</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># See all (non-staged) changes done to a local repo</span>
+<span class="nv">$ </span>git diff
+
+<span class="c"># See all (staged) changes done to a local repo</span>
+<span class="nv">$ </span>git diff <span class="nt">--cached</span>
+
+<span class="c"># Check what the changes between the files you've committed and the live repo</span>
+<span class="nv">$ </span>git diff <span class="nt">--stat</span> origin/master
+</code></pre></div></div>
+
+<h4 id="useful-commands">Useful commands</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Check if a sha is in production</span>
+<span class="nv">$ </span>git tag <span class="nt">--contains</span> <span class="o">[</span>sha]
+
+<span class="c"># Number of commits by author</span>
+<span class="nv">$ </span>git shortlog <span class="nt">-s</span> <span class="nt">--author</span> <span class="s1">'Author Name'</span>
+
+<span class="c"># List of authors and commits to a repository sorted alphabetically</span>
+<span class="nv">$ </span>git shortlog <span class="nt">-s</span> <span class="nt">-n</span>
+
+<span class="c"># List of commit comments by author</span>
+<span class="nv">$ </span>git shortlog <span class="nt">-n</span> <span class="nt">--author</span> <span class="s1">'Author Name'</span>
+<span class="c"># This also shows the total number of commits by the author</span>
+
+<span class="c"># Number of commits by contributors</span>
+<span class="nv">$ </span>git shortlog <span class="nt">-s</span> <span class="nt">-n</span>
+
+<span class="c"># Undo local changes to a File</span>
+<span class="nv">$ </span>git checkout <span class="nt">--</span> filename
+
+<span class="c"># Shows more detailed info about a commit</span>
+<span class="nv">$ </span>git cat-file sha <span class="nt">-p</span>
+
+<span class="c"># Show number of lines added and removed from a repository by an author since some time in the past.</span>
+<span class="nv">$ </span>git log <span class="nt">--author</span><span class="o">=</span><span class="s2">"Author name"</span> <span class="nt">--pretty</span><span class="o">=</span>tformat: <span class="nt">--numstat</span> <span class="nt">--since</span><span class="o">=</span>month | <span class="nb">awk</span> <span class="s1">'{ add += $1; subs += $2; loc += $1 - $2 } END { printf "added lines: %s, removed lines: %s, total lines: %s\n", add, subs, loc }'</span>
+</code></pre></div></div>
+
+<h4 id="useful-alias">Useful alias</h4>
+<p>To add an alias simply open your .gitconfig file on your home directory and include the alias code</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Shows the log in a more consisted way with the graph for branching and merging</span>
+lg <span class="o">=</span> log <span class="nt">--color</span> <span class="nt">--graph</span> <span class="nt">--pretty</span><span class="o">=</span>format:<span class="s1">'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset'</span> <span class="nt">--abbrev-commit</span>
+</code></pre></div></div>
+
+<h3 id="contributing">Contributing</h3>
+
+<ol>
+  <li>Fork it!</li>
+  <li>Create your feature branch: <code class="language-plaintext highlighter-rouge">git checkout -b my-new-feature</code></li>
+  <li>Commit your changes: <code class="language-plaintext highlighter-rouge">git commit -m 'Add some feature'</code></li>
+  <li>Push to the branch: <code class="language-plaintext highlighter-rouge">git push -u origin my-new-feature</code></li>
+  <li>Submit a pull request - cheers!</li>
+</ol>
+
+<p>[<a href="../git" title="Git">git</a>]</p>
+
+
+
+
+<script type="text/javascript">
+  window.addEventListener("DOMContentLoaded", function () {
+    if (typeof anchors !== "undefined") {
+      anchors.options.visible = "always";
+      anchors.add("a[href^=http]:not(.wikilink)");
+    }
+  });
+</script>
+
+
+      
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+    <script>anchors.add();</script>
+    
+  </body>
+</html>
