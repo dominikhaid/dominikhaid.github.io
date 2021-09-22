@@ -1,4 +1,10 @@
-## Jekyll
+# Wiki build for github.io
 
-- bundle exec jekyll build
-- bundle exec jekyll serve
+Build Markdown based Documentations.
+
+## Use
+
+1. bundler install
+2. gem install
+3. jekyll serve
+4. jekyll build
