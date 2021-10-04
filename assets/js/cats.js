@@ -9,10 +9,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
   let aside = document.createElement('ASIDE');
   aside.setAttribute('id', 'category-links');
-  aside.setAttribute('class', 'box-up');
+  //aside.setAttribute('class', 'box-up');
 
   let linkUrl = '';
-  let clsLst = 'p-1 p-lg-2 m-0 bg-darken';
+  let clsLst = 'p-1 p-lg-2 m-0';
 
   let base = document.createElement('A');
   base.setAttribute('href', `/`);
@@ -33,7 +33,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     element.innerText = page.substring(0, 1).toUpperCase() + page.substring(1);
     aside.appendChild(element);
   });
-  let container = document.querySelector('main article div');
+  let container = document.querySelector('main > article');
   if (!container || typeof container !== 'object') return;
 
   let children = [...container.children];
@@ -41,7 +41,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     container.removeChild(element);
   });
 
-  children.unshift(document.createElement('HR'));
+  //children.unshift(document.createElement('HR'));
   children.unshift(aside);
 
   children.forEach((element) => {

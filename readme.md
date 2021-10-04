@@ -10,8 +10,10 @@ Build Markdown based Documentations.
 
 ## Todo
 
-- [x] Basic Style
-- Classes in Markdown ?
+- [ ] Default post template
+- [x] Toc TODO needs fix
+- [ ] Move links to includes
+- [ ] Bring the Handbooks in
 - [ ] Fix the content we now have
 - [x] Handbook struct in Freigabe aus Nextcloud
 - [x] Nav create script to pre create the json in the \_data folder
@@ -22,9 +24,3 @@ Build Markdown based Documentations.
 - [ ] Nav unfold button
 - [ ] Test mobile
 - [ ] Test high res tv
-- [ ] Update the readme
-- [ ] Default post template
-- [x] Category page template
-- [x] Sample page with karmadown examples
-- [x] Toc
-- [x] Create a script to do the index pages

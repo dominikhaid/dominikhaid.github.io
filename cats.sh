@@ -55,7 +55,7 @@ layout: topic
 title: ${2}
 ---
 
-<section class="box-up">
+<section class="text-box">
 ## {{ page.title }}
 FOE
 
