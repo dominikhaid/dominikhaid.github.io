@@ -1,25 +1,3 @@
-var MD_EXT = [
-  '.md',
-  '.markdown',
-  '.mdx',
-  '.mdown',
-  '.mkdn',
-  '.mkd',
-  '.mdwn',
-  '.mdtxt',
-  '.mdtext',
-  '.text',
-  '.Rmd',
-];
-function normalizeMdLink(link) {
-  var url = new URL(link);
-  var mdFileExt = MD_EXT.find((ext) => url.pathname.endsWith(ext));
-  if (mdFileExt) {
-    url.pathname = url.pathname.slice(0, mdFileExt.length * -1);
-  }
-  return Array.from(new Set(url.toString().split('/'))).join('/');
-}
-
 /**
  * Create Table of Contents
  * @param {string} id defaults to toc
@@ -56,27 +34,38 @@ function setMainNav(id = 'main-nav') {
   });
 }
 
-const toggleNav = (id = 'main-nav') => {
-  let nav = document.getElementById(id);
-  if (!nav) return false;
-  nav.classList.toggle('hidden');
+/**
+ * Add Wikilinks from [[Text]] marks
+ * @returns void
+ * */
+const addWikiLinks = () => {
+  const MD_EXT = [
+    '.md',
+    '.markdown',
+    '.mdx',
+    '.mdown',
+    '.mkdn',
+    '.mkd',
+    '.mdwn',
+    '.mdtxt',
+    '.mdtext',
+    '.text',
+    '.Rmd',
+  ];
 
-  !nav.classList.contains('hidden') &&
-    window.document.body.setAttribute('style', 'overflow: hidden');
-  nav.classList.contains('hidden') &&
-    window.document.body.setAttribute('style', '');
+  function normalizeMdLink(link) {
+    var url = new URL(link);
+    var mdFileExt = MD_EXT.find((ext) => url.pathname.endsWith(ext));
+    if (mdFileExt) {
+      url.pathname = url.pathname.slice(0, mdFileExt.length * -1);
+    }
+    return Array.from(new Set(url.toString().split('/'))).join('/');
+  }
 
-  return true;
-};
-
-window.addEventListener('DOMContentLoaded', (event) => {
-  createToc();
-  setMainNav();
-
-  let navBtn = document.getElementById('mobile-nav');
-  navBtn && navBtn.addEventListener('click', () => toggleNav());
-  document.getElementById('main-nav') &&
-    document.getElementById('main-nav').classList.add('hidden');
+  if (typeof anchonamers !== 'undefined') {
+    anchors.options.visible = 'always';
+    anchors.add('a[href^=http]:not(.wikilink)');
+  }
 
   document
     .querySelectorAll('.markdown-body a[title]:not([href^=http])')
@@ -104,31 +93,66 @@ window.addEventListener('DOMContentLoaded', (event) => {
         a.href = normalizeMdLink(a.href);
       }
     });
+};
 
+/**
+ * Remove Content marked with .github-only from render
+ * @returns void
+ */
+const handleGitOnly = () => {
   document.querySelectorAll('.github-only').forEach((el) => {
     el.remove();
   });
+};
 
-  if (typeof anchors !== 'undefined') {
-    anchors.options.visible = 'always';
-    anchors.add('a[href^=http]:not(.wikilink)');
-  }
-  var list = document.querySelectorAll('.list');
+/**
+ * Attach Eventlistener to main Navigation
+ * @returns void
+ * */
+const handleNavigation = () => {
+  /**
+   * Toggle visibility of the Mobile Navigation
+   * @returns void
+   */
+  const toggleMobilNav = (id = 'main-nav') => {
+    let nav = document.getElementById(id);
+    if (!nav) return false;
+    nav.classList.toggle('hidden');
 
-  function accordion(e) {
-    e.stopPropagation();
-    if (this.classList.contains('active')) {
-      this.classList.remove('active');
-    } else if (this.parentElement.parentElement.classList.contains('active')) {
-      this.classList.add('active');
-    } else {
-      for (i = 0; i < list.length; i++) {
-        list[i].classList.remove('active');
-      }
-      this.classList.add('active');
-    }
+    !nav.classList.contains('hidden') &&
+      window.document.body.setAttribute('style', 'overflow: hidden');
+    nav.classList.contains('hidden') &&
+      window.document.body.setAttribute('style', '');
+  };
+
+  let navBtn = document.getElementById('mobile-nav');
+  navBtn && navBtn.addEventListener('click', () => toggleMobilNav());
+  document.getElementById('main-nav') &&
+    document.getElementById('main-nav').classList.add('hidden');
+};
+
+window.addEventListener('DOMContentLoaded', () => {
+  try {
+    createToc();
+  } catch (error) {
+    console.error(error);
   }
-  for (i = 0; i < list.length; i++) {
-    list[i].addEventListener('click', accordion);
+
+  try {
+    setMainNav();
+  } catch (error) {
+    console.error(error);
+  }
+
+  try {
+    addWikiLinks();
+  } catch (error) {
+    console.error(error);
+  }
+
+  try {
+    handleGitOnly();
+  } catch (error) {
+    console.error(error);
   }
 });

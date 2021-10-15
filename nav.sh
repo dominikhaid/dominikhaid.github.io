@@ -94,11 +94,16 @@ newTopic() {
 	PAGES_ARR_STR=''
 	SUBPAGES_ARR_STR=''
 
-	if [ $(echo "$file" | tr -cd '/' | wc -c) -eq 2 ]; then
+	if [ $(echo "$file" | tr -cd '/' | wc -c) -eq 3 ]; then
+		tmp_sub=$(echo $file | sd '(.*)/(.*)/(.*)/(.*)' '$2/$3')
+		CURRENT_SUB=$tmp_sub
+		log "ADD NEW SUBPAGES ARR level 3" $tmp_sub
+
+		addNewSubpageToString
+	elif [ $(echo "$file" | tr -cd '/' | wc -c) -eq 2 ]; then
 		log "NEW PAGE LEVEL 2" $file
 		PAGES_ARR_STR+='{"page": "'$page2'","url": "/'$url'"},'
 	else
-
 		log "2. NEW PAGE LEVEL 1" $file
 		TOPIC_TITLE_STR+='"title": "'$title'","url": "/'$url'",'
 	fi
@@ -125,7 +130,9 @@ closeSubCheck() {
 
 # handle Index pages for Subpages level 3
 handleSubIndexPages() {
-	if ! [[ $CURRENT_SUB == $(echo $file | sd 'docs/(.*).md' '$1') ]]; then
+	if
+		! [[ $CURRENT_SUB == $(echo $file | sd 'docs/(.*).md' '$1') ]]
+	then
 		closeSubPagesAndWrite
 	else
 		log "NEW PAGE LEVEL 2" $file
@@ -137,8 +144,13 @@ handleSubIndexPages() {
 closeSubPagesAndWrite() {
 	closeSubCheck
 	CURRENT_SUB=""
-	log "NEW PAGE LEVEL 2" $file
-	PAGES_ARR_STR+='{"page": "'$page2'","url": "/'$url'"},'
+	if [ $(echo "$file" | tr -cd '/' | wc -c) -eq 1 ]; then
+		log "2. NEW PAGE LEVEL 1" $file
+		TOPIC_TITLE_STR+='"title": "'$title'","url": "/'$url'",'
+	else
+		log "NEW PAGE LEVEL 2 / CLOSE SUB" $file
+		PAGES_ARR_STR+='{"page": "'$page2'","url": "/'$url'"},'
+	fi
 }
 
 #trim tmp_grp to topic?/page?/subpage , like docker or programming/java or programming/javascript/react

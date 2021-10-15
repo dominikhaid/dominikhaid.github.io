@@ -10,17 +10,17 @@ Build Markdown based Documentations.
 
 ## Todo
 
-- [ ] Default post template
-- [x] Toc TODO needs fix
-- [ ] Move links to includes
-- [ ] Bring the Handbooks in
 - [ ] Fix the content we now have
-- [x] Handbook struct in Freigabe aus Nextcloud
-- [x] Nav create script to pre create the json in the \_data folder
-- [x] Define the basic html
-- [x] Frontend collapse function for Navigation
-- [x] Script reset the navigation state after page change
 - [ ] Code before copy text to clipboard
 - [ ] Nav unfold button
 - [ ] Test mobile
 - [ ] Test high res tv
+- [ ] Lightbox
+- [ ] Anchor.js diffrent link symbols
+- [ ] Basic Wiki button ani
+- [ ] Unlimited subfolders
+- [ ] Fix toc ignoring lists
+
+## Relaese
+
+- v1.0.0
