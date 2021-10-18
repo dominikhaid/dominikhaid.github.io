@@ -151,6 +151,12 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   try {
+    handleNavigation();
+  } catch (error) {
+    console.error(error);
+  }
+
+  try {
     handleGitOnly();
   } catch (error) {
     console.error(error);
