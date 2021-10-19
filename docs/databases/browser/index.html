@@ -17,8 +17,8 @@
 {"@type":"WebPage","author":{"@type":"Person","name":"Dominik Haid"},"headline":"Local Database","url":"/docs/databases/browser/","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <script  src="/assets/js/onload.js?v=81b82608c3917fe01957469291760866b9aeb9da"></script>
-    <link rel="stylesheet" href="/assets/scss/style.css?v=81b82608c3917fe01957469291760866b9aeb9da">
+    <script  src="/assets/js/onload.js?v=fe0d81175a5dc4ecf6c00816adb8fa50e6c4a76a"></script>
+    <link rel="stylesheet" href="/assets/scss/style.css?v=fe0d81175a5dc4ecf6c00816adb8fa50e6c4a76a">
     <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
 
 <!-- Setup Google Analytics -->
@@ -472,16 +472,35 @@ alt="wiki-of-dominik"
 
 <section class="text-box">
   <h3>Table of Contents</h3>
-  <ul class="mb-5" id="toc"><li><a href="#local-db">Local DB</a></li><li><a href="#local-storage">Local-Storage</a></li><li><a href="#cookies">Cookies</a></li></ul>
+  <ul class="mb-5" id="toc"><li><a href="#indexeddb">IndexedDB</a></li><li><a href="#local-storage">Local Storage</a></li><li><a href="#cookies">Cookies</a></li></ul>
 </section>
 
-<section class="text-box"><h2 id="local-db">Local DB</h2>
+<section class="text-box"><h2 id="indexeddb">IndexedDB</h2>
 
-<p>JavaScript based SQL like database in the browser.</p>
+<p>As the name implies, IndexedDB stores its entries with indexs. What makes IndexedDb capable of handling a larger amount of data on the client side.
+There are serveral commands the to obtain, update or delete entries in the IndexedDb. For further information please see the documentation for IndexedDB.</p>
 
-<h2 id="local-storage">Local-Storage</h2>
+<ul>
+  <li><a href="https://developer.mozilla.org/de/docs/Web/API/IndexedDB_API">IndexedDb</a></li>
+</ul>
+
+<h2 id="local-storage">Local Storage</h2>
+
+<p>Compare to the local db, local storage is a more basic. Local storage stores data with key value pairs like cookies. Local Storage is persitent until the user or the programm deletes it. Local storage is considerd a bit more unsafe then cookies so highly sensitive data should not stored there. For furhter explanation I refer to the MDN page below.</p>
+
+<ul>
+  <li><a href="https://developer.mozilla.org/de/docs/Web/API/Window/localStorage">localStorge</a></li>
+</ul>
 
 <h2 id="cookies">Cookies</h2>
+
+<p>Cookies are like the local storage u can set dem easly with key value pairs. Cookies can be locked be only read by the domain which wrote them.
+There also some other a bit more advanced settings that cookies can manage. Cookies should be chosen over local storage for a bit sensitive data.
+For further explanation I refer to the MDN page below.</p>
+
+<ul>
+  <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies">Cookies</a></li>
+</ul>
 </section>
 
 
@@ -562,7 +581,7 @@ alt="wiki-of-dominik"
 
 
 
-<script  src="/assets/js/cats.js?v=81b82608c3917fe01957469291760866b9aeb9da"></script>
+<script  src="/assets/js/cats.js?v=fe0d81175a5dc4ecf6c00816adb8fa50e6c4a76a"></script>
 
             
     </article>
