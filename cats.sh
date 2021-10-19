@@ -55,8 +55,8 @@ layout: topic
 title: ${2}
 ---
 
-<section class="text-box">
-## {{ page.title }}
+<section class="text-box category-link-list">
+## {{ page.title | upcase }}
 FOE
 
 }

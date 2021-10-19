@@ -12,7 +12,7 @@ function createToc(id = 'toc') {
     newArchor.innerText = li.innerText;
     newArchor.setAttribute(
       'href',
-      '#' + li.innerText.toLowerCase().replace(' ', '-')
+      '#' + li.innerText.toLowerCase().replaceAll(' ', '-')
     );
     li.innerText = '';
     li.appendChild(newArchor);

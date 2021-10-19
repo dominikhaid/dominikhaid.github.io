@@ -46,7 +46,6 @@ ul.menu .list a {
 }
 ul.menu .list a:hover {
   background-color: #324252;
-  transition: 300ms all;
   color: #09fbd2;
 }
 ul.menu .list .items {
@@ -64,14 +63,6 @@ ul.menu .list .items a:hover {
 ul.menu .list:last-child {
   border-bottom: none;
 }
-//ul.menu .active:after {
-//content: "📂";
-//position: absolute;
-//right: 17px;
-//top: 17px;
-//padding: 0px 5px;
-//color: #fff;
-//}
 
 ul.menu .active:before li {
   content: '📂';
@@ -116,4 +107,8 @@ ul.menu .active .list {
 }
 ul.menu .active .list a {
   padding: 17px 0px 17px 45px;
+}
+
+ul.menu li li {
+  line-height: 0.5rem;
 }

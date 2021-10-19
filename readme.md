@@ -10,11 +10,8 @@ Build Markdown based Documentations.
 
 ## Todo
 
-- [ ] Fix the content we now have
 - [ ] Code before copy text to clipboard
 - [ ] Nav unfold button
-- [ ] Test mobile
-- [ ] Test high res tv
 - [ ] Lightbox
 - [ ] Anchor.js diffrent link symbols
 - [ ] Basic Wiki button ani
