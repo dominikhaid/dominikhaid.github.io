@@ -55,7 +55,7 @@ layout: topic
 title: ${2}
 ---
 
-<section class="text-box category-link-list">
+<section class="col-12 flex-wrap d-flex text-box flex-justify-start ml-0">
 ## {{ page.title | upcase }}
 FOE
 
@@ -64,7 +64,7 @@ FOE
 #write rest  of the index page args, $file
 writeEnd() {
 	cat <<FOE >>$1
-{: .link-box}
+{: .link-box.ml-0}
 </section>
 FOE
 
